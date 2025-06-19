@@ -2876,20 +2876,16 @@ int waitForInterruptClose(int pin) {
  *********************************************************************************
  */
 
-static int interruptHandlerInit(int pin)
+static int interruptHandlerInit(int pin, int EdgeMode, unsigned long debounce_period_us)
 {
   const char* strmode = "";
-  int EdgeMode, ret, attr;
-  unsigned long debounce_period_us;
+  int ret, attr;
   struct gpio_v2_line_config config;
   struct gpio_v2_line_request req;
 
   if (wiringPiGpioDeviceGetFd() < 0) {
     return -1;
   }
-
-  EdgeMode = isrEdgeMode[pin];
-  debounce_period_us = isrDebouncePeriodUs[pin];
 
   if (wiringPiDebug) {
     printf ("interruptHandlerV2: GPIO line %d, edge mode %d, debounce_period_us %lu \n", pin, EdgeMode, debounce_period_us) ;
@@ -3087,14 +3083,8 @@ int wiringPiISRInternal(int pin, int edgeMode, void (*function)(struct WPIWfiSta
     printf("wiringPi: wiringPiISR pin %d, edgeMode %d\n", pin, edgeMode);
   }
   if (isrFunctions[pin] || isrFunctionsV2[pin]) {
-    fprintf(stderr, "wiringPi: ISR function already active, ignoring \n");
+    fprintf(stderr, "wiringPi: ISR function already active\n");
   }
-
-  isrFunctionsV2[pin] = function;
-  isrUserdata[pin] = userdata;
-  isrFunctions[pin] = functionClassic;
-  isrEdgeMode[pin] = edgeMode;
-  isrDebouncePeriodUs[pin] = debounce_period_us;
 
   if (wiringPiDebug) {
     printf("wiringPi: mutex in\n");
@@ -3103,11 +3093,18 @@ int wiringPiISRInternal(int pin, int edgeMode, void (*function)(struct WPIWfiSta
     struct interrupt_handler_params params = {
       .pin = pin,
     };
-    params.fd = interruptHandlerInit(pin);
+    params.fd = interruptHandlerInit(pin, edgeMode, debounce_period_us);
     if (params.fd < 0) {
       pthread_mutex_unlock (&pinMutex) ;
       return -1;
     }
+
+    // OK to start the new ISR. Update the table.
+    isrFunctionsV2[pin] = function;
+    isrUserdata[pin] = userdata;
+    isrFunctions[pin] = functionClassic;
+    isrEdgeMode[pin] = edgeMode;
+    isrDebouncePeriodUs[pin] = debounce_period_us;
 
     pinPass = pin ;
     if (params.fd > 0) {
