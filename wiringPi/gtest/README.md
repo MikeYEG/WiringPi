@@ -2,8 +2,8 @@
 
 g++ is required to build the test cases.
 
-Connect wPi pin 31 (BCM 1) and wPi pin 26 (BCM 12) to run ISR tests.
-Also, wPi pin 28 (BCM 20) should be unconnected.
+Connect wPi pin 1 (BCM 18) and wPi pin 0 (BCM 17) to run ISR tests.
+Also, wPi pin 6 (BCM 25) should be unconnected.
 
 Run `make test` or do following to run the test:
 

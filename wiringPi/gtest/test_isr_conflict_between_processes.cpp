@@ -5,9 +5,9 @@
 #include <unistd.h>
 #include <wiringPi.h>
 
-#define TRIGGER_PIN  26  // BCM 12
-#define LISTENER_PIN 31  // BCM 1
-#define ANOTHER_LISTENER_PIN 28  // BCM 20
+#define TRIGGER_PIN  0  // BCM 17
+#define LISTENER_PIN 1  // BCM 18
+#define ANOTHER_LISTENER_PIN 6  // BCM 25
 
 static void *remote_isr(void *) {
   std::system("./bin/run_isr");

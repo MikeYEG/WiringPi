@@ -1,13 +1,13 @@
 /*
  * Helper program of test_conflict_between_processes.
  *
- * The program configures ISR on pin 31 (BCM 1) and polls for a termination request.
+ * The program configures ISR on pin 1 (BCM 18) and polls for a termination request.
  */
 #include <stdint.h>
 #include <stdio.h>
 #include <wiringPi.h>
 
-#define LISTENER_PIN 31  // BCM 1
+#define LISTENER_PIN 1  // BCM 18
 
 static uint8_t ok_to_stop = 0;
 static void noop() {

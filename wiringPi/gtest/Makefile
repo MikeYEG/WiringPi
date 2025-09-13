@@ -16,7 +16,7 @@ BIN_DIR := bin
 RUN_ISR_SRC := run_isr.cpp
 RUN_ISR_BIN := $(BIN_DIR)/run_isr
 
-# Need BCM1 <-> BCM12 connection
+# Need BCM17 <-> BCM18 connection
 TEST_SRCS := \
     test_isr_both.cpp \
     test_isr_conflict_between_processes.cpp \
