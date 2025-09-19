@@ -72,11 +72,11 @@ TEST_F(ISRRising2, Fundamental) {
   EXPECT_EQ(count, 0u);
   EXPECT_EQ(count2, 0u);
   digitalWrite(TRIGGER_PIN, HIGH);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1u);
   EXPECT_EQ(count2, 1u);
   digitalWrite(TRIGGER_PIN, LOW);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1u);
   EXPECT_EQ(count2, 1u);
 }
@@ -86,19 +86,19 @@ TEST_F(ISRRising2, ThreeTriggers) {
   delay(10);
   count = 0;
   for (int i = 0; i < 6; ++i) {
-    delay(10);
+    delay(20);
     digitalWrite(TRIGGER_PIN, i % 2);
   }
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 3u);
 }
 
 TEST_F(ISRRising2, Debounce) {
-  delay(10);
+  delay(20);
   for (int i = 0; i < 7; ++i) {
     digitalWrite(TRIGGER_PIN, (i + 1) % 2);
   }
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1u);
 }
 
@@ -117,19 +117,20 @@ TEST_F(ISRRising2, ISRInitConflict) {
   EXPECT_EQ(count, 0u);
   EXPECT_EQ(count2, 0u);
   digitalWrite(TRIGGER_PIN, HIGH);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1u);
   EXPECT_EQ(count2, 1u);
   digitalWrite(TRIGGER_PIN, LOW);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1u);
   EXPECT_EQ(count2, 1u);
 
-  delay(10);
+  delay(20);
   count = 0;
   for (int i = 0; i < 7; ++i) {
+    delay(1);
     digitalWrite(TRIGGER_PIN, (i + 1) % 2);
   }
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1u);
 }

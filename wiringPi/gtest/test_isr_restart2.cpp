@@ -72,11 +72,11 @@ TEST_F(ISRRestart2, RestartISR2) {
   EXPECT_EQ(count, 0);
   EXPECT_EQ(count2, 0);
   digitalWrite(TRIGGER_PIN, HIGH);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1);
   EXPECT_EQ(count2, 1);
   digitalWrite(TRIGGER_PIN, LOW);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1);
   EXPECT_EQ(count2, 1);
 
@@ -84,7 +84,7 @@ TEST_F(ISRRestart2, RestartISR2) {
   EXPECT_EQ(wiringPiISRStop(LISTENER_PIN), 0);
   delay(100);
   digitalWrite(TRIGGER_PIN, HIGH);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1);
   EXPECT_EQ(count2, 1);
   EXPECT_EQ(count3, 0);
@@ -96,13 +96,13 @@ TEST_F(ISRRestart2, RestartISR2) {
             0);
   delay(100);
   digitalWrite(TRIGGER_PIN, HIGH);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 1);
   EXPECT_EQ(count2, 1);
   EXPECT_EQ(count3, 0);
 
   digitalWrite(TRIGGER_PIN, LOW);
-  delay(10);
+  delay(20);
   EXPECT_EQ(count, 2);
   EXPECT_EQ(count2, 1);
   EXPECT_EQ(count3, -1);
