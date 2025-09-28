@@ -57,6 +57,7 @@ TEST_F(ISRRestart, RestartISR) {
   EXPECT_EQ(
       wiringPiISR(LISTENER_PIN, INT_EDGE_FALLING, ISRRestart::TriggerCountDown),
       0);
+  count=1;
   delay(100);
   digitalWrite(TRIGGER_PIN, HIGH);
   delay(10);
