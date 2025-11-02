@@ -473,7 +473,7 @@ static void wfi(struct WPIWfiStatus wfiStatus, void* userdata) {
       edgeType = "falling";
   else
       edgeType = "none";
-  printf("gpio BCM = %d, IRQ edge = %s, timestamp = %lld microseconds, timenow = %lld, diff = %lld\n", wfiStatus.gpioPin, edgeType, wfiStatus.timeStamp_us, timenow, diff);
+  printf("gpio BCM = %d, IRQ edge = %s, timestamp = %lld microseconds, timenow = %lld, diff = %lld\n", wfiStatus.pinBCM, edgeType, wfiStatus.timeStamp_us, timenow, diff);
   if (toggle == 0) {
     digitalWrite (OUTpin, HIGH);
     toggle = 1;
@@ -500,19 +500,19 @@ int main (void)
 
   printf("Testing waitForInterrupt on both edges IRQ @ GPIO%d, timeout is %d\n", IRQpin, TIMEOUT);
   struct WPIWfiStatus wfiStatus = waitForInterrupt2(IRQpin, INT_EDGE_BOTH, TIMEOUT, BOUNCETIME_WFI);
-  if (wfiStatus.status < 0) {
+  if (wfiStatus.statusOK < 0) {
     printf("waitForInterrupt returned error\n");
     pinMode(OUTpin, INPUT);
     return 0;
   }
-  else if (wfiStatus.status == 0) {
+  else if (wfiStatus.statusOK == 0) {
     printf("waitForInterrupt timed out\n\n");
   }
   else {
     if (wfiStatus.edge == INT_EDGE_FALLING)
-        printf("waitForInterrupt: GPIO pin %d falling edge fired at %lld microseconds\n\n", wfiStatus.gpioPin, wfiStatus.timeStamp_us);
+        printf("waitForInterrupt: GPIO pin %d falling edge fired at %lld microseconds\n\n", wfiStatus.pinBCM, wfiStatus.timeStamp_us);
     else
-        printf("waitForInterrupt: GPIO pin %d rising edge fired at %lld microseconds\n\n", wfiStatus.gpioPin, wfiStatus.timeStamp_us);
+        printf("waitForInterrupt: GPIO pin %d rising edge fired at %lld microseconds\n\n", wfiStatus.pinBCM, wfiStatus.timeStamp_us);
   }
   
   printf("Testing IRQ @ GPIO%d on both edges and bouncetime %d microseconds. Toggle LED @ GPIO%d on IRQ.\n\n", IRQpin, BOUNCETIME, OUTpin);
