@@ -470,7 +470,7 @@ static void wfi(struct WPIWfiStatus wfiStatus, void* userdata) {
       edgeType = "falling";
   else
       edgeType = "none";
-  printf("gpio BCM = %d, IRQ edge = %s, timestamp = %lld microseconds, timenow = %lld, diff = %lld\n", wfiStatus.gpioPin, edgeType, wfiStatus.timeStamp_us, timenow, diff);
+  printf("gpio BCM = %d, IRQ edge = %s, timestamp = %lld microseconds, timenow = %lld, diff = %lld\n", wfiStatus.pinBCM, edgeType, wfiStatus.timeStamp_us, timenow, diff);
   if (toggle == 0) {
     digitalWrite (OUTpin, HIGH);
     toggle = 1;
