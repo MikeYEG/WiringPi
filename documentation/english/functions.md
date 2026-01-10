@@ -798,8 +798,8 @@ int wiringPiSPISetupMode(int channel, int speed, int mode);
 int wiringPiSPIxSetupMode(const int number, const int channel, const int speed, const int mode);
 ```
 
-``number``: SPI number (typically 0, on Compute Module 0-7).  
-``channel``: SPI channel (typically 0 or 1, on Compute Module 0-3).  
+``number``: SPI number (typically 0, on Compute Module 0-6).  
+``channel``: SPI channel (typically 0 or 1, on Compute Module or the corresponding overlay 0-4).  
 ``speed``: SPI clock speed in Hz (500,000 to 32,000,000).  
 ``mode``: SPI mode ([www.kernel.org/doc/Documentation/spi/spidev](https://www.kernel.org/doc/Documentation/spi/spidev)).  
 ``Return Value``:  File handle to the SPI bus, or -1 on error.

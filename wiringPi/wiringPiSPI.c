@@ -44,9 +44,11 @@
 //static const char       *spiDev1  = "/dev/spidev0.1" ;
 static const uint8_t     spiBPW   = 8 ;
 static const uint16_t    spiDelay = 0 ;
-//https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf
+//https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf   SPI0-6, CS0-2
+//cm5-datasheet.pdf                                          SPI0-5, CS depend on SPInumber, can be up to 4
+//spi0-4cs.dts                                               extention for supporting CS0-4
 const uint8_t     WPI_MaxSPINumbers   = 7 ;
-const uint8_t     WPI_MaxSPIChannels  = 3 ;
+const uint8_t     WPI_MaxSPIChannels  = 5 ;
 
 
 static uint32_t    spiSpeeds [7][3] =

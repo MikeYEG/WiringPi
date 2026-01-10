@@ -809,8 +809,8 @@ int wiringPiSPISetupMode(int channel, int speed, int mode)
 int wiringPiSPIxSetupMode(const int number, const int channel, const int speed, const int mode)
 ```
 
-``number``: SPI Nummer (typisch 0, bei Compute Modul 0-7).  
-``channel``: SPI Kanal (typisch 0 oder 1, bei Compute Modul 0-3).  
+``number``: SPI Nummer (typisch 0, bei Compute Modul 0-6).  
+``channel``: SPI Kanal (typisch 0 oder 1, bei Compute Modul oder entsprechenden overlay 0-4).  
 ``speed``: SPI Taktrate.  
 ``mode``: SPI Modus (https://www.kernel.org/doc/Documentation/spi/spidev).  
 ``Rückgabewert``:  Datei Handle zum SPI-Bus  
