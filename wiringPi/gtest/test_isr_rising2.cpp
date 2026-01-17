@@ -4,7 +4,7 @@
 
 #define TRIGGER_PIN  0  // BCM 17
 #define LISTENER_PIN 1  // BCM 18
-#define ANOTHER_LISTENER_PIN 11  // BCM 7
+#define ANOTHER_LISTENER_PIN 26  // BCM 12
 
 struct counters {
   uint32_t *primary;
