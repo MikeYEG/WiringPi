@@ -83,7 +83,8 @@ int main (void) {
     case PI_MODEL_400:
     case PI_MODEL_CM4:
     case PI_MODEL_CM4S:
-      fExpectTimedigitalWrite = 0.020; //us
+      //fExpectTimedigitalWrite = 0.020; //us  - with kernel <6.12.47
+      fExpectTimedigitalWrite = 0.016; //us
       fExpectTimedigitalRead  = 0.038; //us
       fExpectTimepinMode      = 0.121; //us
       fWriteReadDelayFactor   = 1.86;

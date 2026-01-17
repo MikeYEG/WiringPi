@@ -1,7 +1,7 @@
 /*
  * wiringPiSPI.c:
  *	Simplified SPI access routines
- *	Copyright (c) 2012-2025 Gordon Henderson and contributors
+ *	Copyright (c) 2012–2019 Gordon Henderson; 2019–2026 Contributors
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://github.com/WiringPi/WiringPi/
@@ -44,9 +44,11 @@
 //static const char       *spiDev1  = "/dev/spidev0.1" ;
 static const uint8_t     spiBPW   = 8 ;
 static const uint16_t    spiDelay = 0 ;
-//https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf
+//https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf   SPI0-6, CS0-2
+//cm5-datasheet.pdf                                          SPI0-5, CS depend on SPInumber, can be up to 4
+//spi0-4cs.dts                                               extention for supporting CS0-4
 const uint8_t     WPI_MaxSPINumbers   = 7 ;
-const uint8_t     WPI_MaxSPIChannels  = 3 ;
+const uint8_t     WPI_MaxSPIChannels  = 5 ;
 
 
 static uint32_t    spiSpeeds [7][3] =

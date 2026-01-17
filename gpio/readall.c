@@ -1,7 +1,7 @@
 /*
  * readall.c:
  *	The readall functions - getting a bit big, so split them out.
- *	Copyright (c) 2012-2024 Gordon Henderson and contributors
+ *	Copyright (c) 2012–2019 Gordon Henderson; 2019–2026 Contributors
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://github.com/WiringPi/WiringPi/
