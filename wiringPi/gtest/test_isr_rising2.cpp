@@ -4,7 +4,7 @@
 
 #define TRIGGER_PIN  0  // BCM 17
 #define LISTENER_PIN 1  // BCM 18
-#define ANOTHER_LISTENER_PIN 6  // BCM 25
+#define ANOTHER_LISTENER_PIN 11  // BCM 7
 
 struct counters {
   uint32_t *primary;
@@ -86,10 +86,9 @@ TEST_F(ISRRising2, ThreeTriggers) {
   delay(10);
   count = 0;
   for (int i = 0; i < 6; ++i) {
-    delay(20);
     digitalWrite(TRIGGER_PIN, i % 2);
+    delay(20);
   }
-  delay(20);
   EXPECT_EQ(count, 3u);
 }
 
