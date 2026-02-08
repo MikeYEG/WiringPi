@@ -77,15 +77,18 @@ int main (void) {
     int Pi5 = 0;
     double MaxFreq = 100.0;
     switch(RaspberryPiModel) {
-      case PI_MODEL_A:
+     case PI_MODEL_A:
       case PI_MODEL_B:
       case PI_MODEL_BP:
       case PI_MODEL_AP:
+      case PI_MODEL_CM:
+        MaxFreq = 5.0; // 4.8 kHz -> ~26% CPU@800 MHz
+        printf(" - Pi1/BCM2835 detected, will skip tests with frequency above %g kHz\n", MaxFreq);
+        break;
       case PI_MODEL_ZERO:
       case PI_MODEL_ZERO_W:
-      case PI_MODEL_CM:
-        MaxFreq = 13.0; // 12.5 kHz -> ~40% CPU@800 MHz
-        printf(" - Pi1/BCM2835 detected, will skip tests with frequency above %g kHz\n", MaxFreq);
+        MaxFreq = 13.0; // 12.5 kHz -> ~42% CPU@1000 MHz
+        printf(" - PiZero/BCM2835 detected, will skip tests with frequency above %g kHz\n", MaxFreq);
         break;
       case PI_MODEL_2:
         MaxFreq = 20.0;
