@@ -1,7 +1,7 @@
 /*
  * wiringPi.h:
  *	Arduino like Wiring library for the Raspberry Pi.
- *	Copyright (c) 2012-2025 Gordon Henderson
+ *	Copyright (c) 2012–2019 Gordon Henderson; 2019–2026 Contributors
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://github.com/WiringPi/WiringPi/
@@ -24,13 +24,14 @@
 #ifndef	__WIRING_PI_H__
 #define	__WIRING_PI_H__
 
-// C doesn't have true/false by default and I can never remember which
-//	way round they are, so ...
-//	(and yes, I know about stdbool.h but I like capitals for these and I'm old)
+#include <stdbool.h>
 
-#ifndef	TRUE
-#  define	TRUE	(1==1)
-#  define	FALSE	(!TRUE)
+// macros retained for old code compatibility, we now use stdbool.h
+#ifndef TRUE
+  #define TRUE true
+#endif
+#ifndef FALSE
+  #define FALSE false
 #endif
 
 // GCC warning suppressor
